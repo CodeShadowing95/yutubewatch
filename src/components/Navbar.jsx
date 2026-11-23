@@ -2,7 +2,7 @@ import { Stack, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { logo } from '../utils/constants';
-import { colors } from '../utils/theme';
+import { colors, fonts } from '../utils/theme';
 import SearchBar from './SearchBar';
 
 const Navbar = () => (
@@ -22,8 +22,14 @@ const Navbar = () => (
       borderBottom: `1px solid ${colors.border}`,
     }}
   >
-    <Link to="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }} aria-label="YuTubeWatch home">
-      <img src={logo} alt="YuTubeWatch" height={40} style={{ maxWidth: 140, objectFit: 'contain' }} />
+    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }} aria-label="YuTubeWatch home">
+      <img src={logo} alt="" height={28} width={40} />
+      <Box
+        component="span"
+        sx={{ display: { xs: 'none', sm: 'inline' }, fontFamily: fonts.heading, fontWeight: 700, fontSize: 20, letterSpacing: '-0.02em', color: colors.text }}
+      >
+        YuTube<span style={{ color: colors.accent }}>Watch</span>
+      </Box>
     </Link>
 
     <Box sx={{ flex: 1, minWidth: 0, display: 'flex', justifyContent: 'center' }}>
