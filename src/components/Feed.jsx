@@ -42,7 +42,7 @@ const Feed = () => {
           variant="body2"
           sx={{ display: { xs: 'none', md: 'block' }, mt: 'auto', pt: 3, px: 1.5, fontSize: 12, lineHeight: 1.6, color: '#8A8A8A' }}
         >
-          © {new Date().getFullYear()} WeTube
+          © {new Date().getFullYear()} KmerTube
           <br />
           Built by Frank Patrick Namegni
         </Typography>
