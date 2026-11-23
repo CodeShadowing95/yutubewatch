@@ -22,13 +22,13 @@ const Navbar = () => (
       borderBottom: `1px solid ${colors.border}`,
     }}
   >
-    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }} aria-label="YuTubeWatch home">
+    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }} aria-label="WeTube home">
       <img src={logo} alt="" height={28} width={40} />
       <Box
         component="span"
         sx={{ display: { xs: 'none', sm: 'inline' }, fontFamily: fonts.heading, fontWeight: 700, fontSize: 20, letterSpacing: '-0.02em', color: colors.text }}
       >
-        YuTube<span style={{ color: colors.accent }}>Watch</span>
+        We<span style={{ color: colors.accent }}>Tube</span>
       </Box>
     </Link>
 

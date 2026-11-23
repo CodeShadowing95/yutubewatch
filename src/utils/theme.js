@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
 // Design tokens shared by the whole app.
-// The brand stays the same: black background and the YuTubeWatch red.
+// The brand stays the same: black background and the WeTube red.
 export const colors = {
   background: '#0A0A0A',
   surface: '#141414',
