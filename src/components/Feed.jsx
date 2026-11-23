@@ -2,47 +2,64 @@ import { useState, useEffect } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 
 import { fetchFromAPI } from '../utils/fetchFromAPI';
+import { colors } from '../utils/theme';
 import { Sidebar, Videos } from './';
 
-// sd: small devices
-// md: medium devices
-// ld: large devices
-
 const Feed = () => {
-
   const [selectedCategory, setSelectedCategory] = useState('New');
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState(null);
 
   useEffect(() => {
+    setVideos(null);
+
     fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
-    .then((data) => setVideos(data.items));
+      .then((data) => setVideos(data?.items || []))
+      .catch(() => setVideos([]));
   }, [selectedCategory]);
 
   return (
-    <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{ height: {sx: 'auto', md: '92vh'}, borderRight: '1px solid #3d3d3d', px: { sx: 0, md: 2 }}}>
-        <Sidebar
-          selectedCategory=
-          {selectedCategory}
-          setSelectedCategory=
-          {setSelectedCategory}
-        />
+    <Stack sx={{ flexDirection: { xs: 'column', md: 'row' } }}>
+      <Box
+        component="aside"
+        sx={{
+          flexShrink: 0,
+          width: { xs: '100%', md: 248 },
+          boxSizing: 'border-box',
+          position: { md: 'sticky' },
+          top: { md: 68 },
+          height: { xs: 'auto', md: 'calc(100vh - 68px)' },
+          overflowY: { md: 'auto' },
+          display: 'flex',
+          flexDirection: 'column',
+          px: { xs: 2, md: 1.5 },
+          py: 2,
+          borderRight: { md: `1px solid ${colors.border}` },
+        }}
+      >
+        <Sidebar selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 
-        <Typography className="copyright" variant="body2" sx={{ mt: 1.5, color: '#fff' }}>
-          Copyright 2023 YuTubeWatch
+        <Typography
+          variant="body2"
+          sx={{ display: { xs: 'none', md: 'block' }, mt: 'auto', pt: 3, px: 1.5, fontSize: 12, lineHeight: 1.6, color: '#8A8A8A' }}
+        >
+          © {new Date().getFullYear()} YuTubeWatch
+          <br />
+          Built by Frank Patrick Namegni
         </Typography>
-
       </Box>
 
-      <Box p={2} sx={{ overflowY: 'auto', height: '90vh', flex: 2 }}>
-        <Typography variant='h4' fontWeight="bold" mb={2} sx={{ color: 'white' }}>
-          {selectedCategory} <span style={{ color: '#FC1503' }}>Videos</span>
+      <Box component="main" sx={{ flex: 1, minWidth: 0, px: { xs: 2, md: 4 }, pt: 3, pb: 6 }}>
+        <Typography variant="h4" component="h1" sx={{ fontSize: { xs: 26, md: 34 } }}>
+          {selectedCategory} <span style={{ color: colors.accent }}>Videos</span>
+        </Typography>
+        <Typography sx={{ mt: 0.75, mb: 3, fontSize: 14, color: colors.textMuted }}>
+          Fresh uploads picked for the “{selectedCategory}” category
         </Typography>
 
         <Videos videos={videos} />
       </Box>
     </Stack>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;
