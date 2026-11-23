@@ -1,0 +1,19 @@
+# Netlify configuration: Netlify reads this file on every deploy,
+# so the build settings don't have to be filled in by hand in the UI.
+
+[build]
+  # Command Netlify runs to build the app
+  command = "npm run build"
+  # Folder Netlify publishes once the build is done (Create React App output)
+  publish = "build"
+
+[build.environment]
+  # Node version used for the build
+  NODE_VERSION = "18"
+
+# Send every route to index.html so React Router handles
+# /video/:id, /channel/:id and /search/:term on page refresh.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
