@@ -32,13 +32,23 @@ const VideoDetail = () => {
     setVideos(null);
     setExpanded(false);
 
-    fetchFromAPI(`videos?part=snippet,statistics&id=${id}`)
-      .then((data) => setVideoDetail(data?.items?.[0] || null))
-      .catch(() => setVideoDetail(null));
+    const notCurrent = (items = []) => items.filter((item) => item?.id?.videoId && item.id.videoId !== id);
 
-    fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`)
-      .then((data) => setVideos(data?.items || []))
-      .catch(() => setVideos([]));
+    fetchFromAPI(`videos?part=snippet,statistics&id=${id}`)
+      .then(async (data) => {
+        const detail = data?.items?.[0] || null;
+        setVideoDetail(detail);
+
+        // YouTube no longer supports `relatedToVideoId`, so "Up next" shows
+        // the latest videos of the same channel instead.
+        if (!detail?.snippet?.channelId) return setVideos([]);
+        const related = await fetchFromAPI(`search?part=snippet&channelId=${detail.snippet.channelId}&order=date&type=video`);
+        return setVideos(notCurrent(related?.items));
+      })
+      .catch(() => {
+        setVideoDetail(null);
+        setVideos([]);
+      });
   }, [id]);
 
   const snippet = videoDetail?.snippet;
