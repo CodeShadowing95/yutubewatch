@@ -42,7 +42,10 @@ const Videos = ({ videos, direction }) => {
 
   if (!Array.isArray(videos)) return <LoadingGrid compact={compact} />;
 
-  if (!videos.length) {
+  // The search API also returns playlists, which have no card: keep only what can be shown.
+  const items = videos.filter((item) => item?.id?.videoId || (!compact && item?.id?.channelId));
+
+  if (!items.length) {
     return (
       <Box sx={{ py: 8, textAlign: 'center', color: colors.textMuted }}>
         <Typography sx={{ fontWeight: 600, color: colors.text }}>No videos found</Typography>
@@ -53,7 +56,7 @@ const Videos = ({ videos, direction }) => {
 
   return (
     <Box sx={compact ? { display: 'flex', flexDirection: 'column', gap: 0.5 } : gridSx}>
-      {videos.map((item, idx) => (
+      {items.map((item, idx) => (
         <Box key={item?.id?.videoId || item?.id?.channelId || idx} sx={{ minWidth: 0 }}>
           {item.id.videoId && <VideoCard video={item} compact={compact} />}
           {item.id.channelId && !compact && <ChannelCard channelDetail={item} />}
