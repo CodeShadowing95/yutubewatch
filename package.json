@@ -1,6 +1,6 @@
 {
-  "name": "youtube_clone",
-  "version": "0.1.0",
+  "name": "kmertube",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -37,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "KmerTube, a modern video streaming platform built with React 18 and Material UI.",
+  "author": "Frank Patrick Namegni",
+  "license": "MIT"
 }
