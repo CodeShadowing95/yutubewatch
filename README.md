@@ -52,9 +52,13 @@ The interface uses its own design system: a deep black background, a signature r
 
 ## Screenshots
 
-| Video page | Channel page |
+| Video page | Search results |
 | :---: | :---: |
-| ![Video page](docs/screenshots/video.png) | ![Channel page](docs/screenshots/channel.png) |
+| ![Video page](docs/screenshots/video.png) | ![Search results](docs/screenshots/search.png) |
+
+| Channel page |
+| :---: |
+| ![Channel page](docs/screenshots/channel.png) |
 
 <div align="center">
   <p><strong>Mobile</strong></p>
