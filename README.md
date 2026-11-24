@@ -184,7 +184,7 @@ To deploy your own copy:
 
 **Frank Patrick Namegni**, full-stack web developer
 
-- Portfolio: [frankpatrick-portfolio.netlify.app](https://frankpatrick-portfolio.netlify.app/)
+- Portfolio: [patrktech.com](https://patrktech.com/)
 - LinkedIn: [frank-patrick-namegni](https://www.linkedin.com/in/frank-patrick-namegni/)
 - GitHub: [@CodeShadowing95](https://github.com/CodeShadowing95)
 
